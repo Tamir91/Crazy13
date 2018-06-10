@@ -10,6 +10,9 @@ import android.view.Menu
 import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
+import org.jetbrains.anko.design.snackbar
+import org.jetbrains.anko.toast
+import ty.crazy13.R.id.toolbar
 import ty.crazy13.app.dagger.component
 
 
@@ -18,9 +21,15 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        setSupportActionBar(toolbar)
+       // setSupportActionBar(toolbar)
 
         component.inject(this)
+
+        fab.setOnClickListener {
+            snackbar(it, "Replace with your own action, Injected views").setAction("Action") {
+                toast("Action Clicked")
+            }
+        }
 
 
         fab.setOnClickListener { view ->
