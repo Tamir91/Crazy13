@@ -54,7 +54,7 @@ dependencies {
 
     //map
     implementation 'com.google.android.gms:play-services-maps:15.0.1'
-
+    implementation "org.jetbrains.kotlin:kotlin-reflect:1.2.41"
 
 
 }

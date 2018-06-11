@@ -1,5 +1,6 @@
 package ty.crazy13
 
+import android.app.Dialog
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.design.widget.NavigationView
@@ -14,14 +15,21 @@ import org.jetbrains.anko.design.snackbar
 import org.jetbrains.anko.toast
 import ty.crazy13.R.id.toolbar
 import ty.crazy13.app.dagger.component
+import ty.crazy13.home.HomeContract
+import ty.crazy13.home.HomePresenter
+import javax.inject.Inject
 
 
-class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, HomeContract.View {
+
+    @Inject lateinit var presenter: HomePresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-       // setSupportActionBar(toolbar)
+       //  setSupportActionBar(toolbar)
+
+
 
         component.inject(this)
 
@@ -43,6 +51,8 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         toggle.syncState()
 
         nav_view.setNavigationItemSelectedListener(this)
+
+        presenter.viewIsReady()
     }
 
     override fun onBackPressed() {
